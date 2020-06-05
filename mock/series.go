@@ -5,6 +5,7 @@
 package mock
 
 import (
+	core "github.com/blueworrybear/svg-charts/core"
 	gomock "github.com/golang/mock/gomock"
 	reflect "reflect"
 )
@@ -32,6 +33,20 @@ func (m *MockSeries) EXPECT() *MockSeriesMockRecorder {
 	return m.recorder
 }
 
+// Colors mocks base method
+func (m *MockSeries) Colors() []core.RGB {
+	m.ctrl.T.Helper()
+	ret := m.ctrl.Call(m, "Colors")
+	ret0, _ := ret[0].([]core.RGB)
+	return ret0
+}
+
+// Colors indicates an expected call of Colors
+func (mr *MockSeriesMockRecorder) Colors() *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Colors", reflect.TypeOf((*MockSeries)(nil).Colors))
+}
+
 // Data mocks base method
 func (m *MockSeries) Data() []interface{} {
 	m.ctrl.T.Helper()
@@ -44,6 +59,21 @@ func (m *MockSeries) Data() []interface{} {
 func (mr *MockSeriesMockRecorder) Data() *gomock.Call {
 	mr.mock.ctrl.T.Helper()
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Data", reflect.TypeOf((*MockSeries)(nil).Data))
+}
+
+// Float64Data mocks base method
+func (m *MockSeries) Float64Data() ([]float64, error) {
+	m.ctrl.T.Helper()
+	ret := m.ctrl.Call(m, "Float64Data")
+	ret0, _ := ret[0].([]float64)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+// Float64Data indicates an expected call of Float64Data
+func (mr *MockSeriesMockRecorder) Float64Data() *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Float64Data", reflect.TypeOf((*MockSeries)(nil).Float64Data))
 }
 
 // Name mocks base method

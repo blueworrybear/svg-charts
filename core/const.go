@@ -2,6 +2,7 @@ package core
 
 type ChartType int
 type Position int
+type Alignment int
 
 const (
 	TypeTreeMap ChartType = iota
@@ -12,6 +13,12 @@ const (
 	PositionBottom
 	PositionLeft
 	PositionRight
+)
+
+const (
+	AlignmentLeft Alignment = iota
+	AlignmentRight
+	AlignmentCenter
 )
 
 func (t ChartType) String() string {

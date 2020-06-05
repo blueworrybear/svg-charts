@@ -1,10 +1,12 @@
 package charts
 
 import (
+	"fmt"
 	"io"
 
 	svg "github.com/ajstarks/svgo"
 	"github.com/blueworrybear/svg-charts/core"
+	shape "github.com/blueworrybear/svg-charts/modules/common"
 )
 
 type TreeMapChart struct {
@@ -22,16 +24,23 @@ func (c *TreeMapChart) Context() core.Context {
 	return c.contex
 }
 
-func (c *TreeMapChart) Rander(w io.Writer) error {
+func (c *TreeMapChart) Render(w io.Writer) error {
 	canvas := svg.New(w)
-	data := c.contex.Series().Data()
-	values := make([]float64, len(data))
-	for i, v := range data {
-		values[i], _ = v.(float64)
+	s := c.contex.FirstSeries()
+	data, err := s.Float64Data()
+	colors := c.contex.SeriesColors(0)
+	if err != nil {
+		return err
 	}
-	root := tilingSlice(values)
-	for _, box := range tilingBoxes(root, 0, 0, 600, 400, 0) {
-		canvas.Rect(box.x, box.y, box.w, box.h, `fill:none;stroke:black`)
+	root := tilingSlice(data)
+	for i, box := range tilingBoxes(root, 0, 0, 600, 400, 0) {
+		boxID := fmt.Sprintf("box%d", box.id)
+		rect := shape.NewRectangle(box.w, box.h)
+		rect.SetPosition(box.x, box.y)
+		rect.SetPadding(1)
+		rect.SetColor(colors[i])
+		rect.SetID(boxID)
+		rect.Draw(canvas)
 	}
 	return nil
 }

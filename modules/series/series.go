@@ -2,6 +2,7 @@ package series
 
 import (
 	"errors"
+	"fmt"
 
 	"github.com/blueworrybear/svg-charts/core"
 )
@@ -29,6 +30,17 @@ func (s *baseSeries) Name() string {
 
 func (s *baseSeries) Data() []interface{} {
 	return s.data
+}
+
+func (s *baseSeries) Float64Data() ([]float64, error) {
+	var ok bool
+	values := make([]float64, len(s.data))
+	for i, v := range s.data {
+		if values[i], ok = v.(float64); !ok {
+			return values, fmt.Errorf("Value format error")
+		}
+	}
+	return values, nil
 }
 
 func (s *baseSeries) Colors() []core.RGB {

@@ -2,6 +2,7 @@ package core
 
 import (
 	"errors"
+	"fmt"
 	"strconv"
 )
 
@@ -33,4 +34,8 @@ func Hex2RGB(hex Hex) (RGB, error) {
 		B: int(values & 0xFF),
 	}
 	return rgb, nil
+}
+
+func (rgb RGB) String() string {
+	return fmt.Sprintf("rgb(%d,%d,%d)", rgb.R, rgb.G, rgb.B)
 }

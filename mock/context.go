@@ -33,30 +33,201 @@ func (m *MockContext) EXPECT() *MockContextMockRecorder {
 	return m.recorder
 }
 
-// Config mocks base method
-func (m *MockContext) Config() core.Config {
+// CanvasSize mocks base method
+func (m *MockContext) CanvasSize() (int, int) {
 	m.ctrl.T.Helper()
-	ret := m.ctrl.Call(m, "Config")
-	ret0, _ := ret[0].(core.Config)
+	ret := m.ctrl.Call(m, "CanvasSize")
+	ret0, _ := ret[0].(int)
+	ret1, _ := ret[1].(int)
+	return ret0, ret1
+}
+
+// CanvasSize indicates an expected call of CanvasSize
+func (mr *MockContextMockRecorder) CanvasSize() *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "CanvasSize", reflect.TypeOf((*MockContext)(nil).CanvasSize))
+}
+
+// ChartOffset mocks base method
+func (m *MockContext) ChartOffset() (int, int) {
+	m.ctrl.T.Helper()
+	ret := m.ctrl.Call(m, "ChartOffset")
+	ret0, _ := ret[0].(int)
+	ret1, _ := ret[1].(int)
+	return ret0, ret1
+}
+
+// ChartOffset indicates an expected call of ChartOffset
+func (mr *MockContextMockRecorder) ChartOffset() *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "ChartOffset", reflect.TypeOf((*MockContext)(nil).ChartOffset))
+}
+
+// ChartSize mocks base method
+func (m *MockContext) ChartSize() (int, int) {
+	m.ctrl.T.Helper()
+	ret := m.ctrl.Call(m, "ChartSize")
+	ret0, _ := ret[0].(int)
+	ret1, _ := ret[1].(int)
+	return ret0, ret1
+}
+
+// ChartSize indicates an expected call of ChartSize
+func (mr *MockContextMockRecorder) ChartSize() *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "ChartSize", reflect.TypeOf((*MockContext)(nil).ChartSize))
+}
+
+// FirstSeries mocks base method
+func (m *MockContext) FirstSeries() core.Series {
+	m.ctrl.T.Helper()
+	ret := m.ctrl.Call(m, "FirstSeries")
+	ret0, _ := ret[0].(core.Series)
 	return ret0
 }
 
-// Config indicates an expected call of Config
-func (mr *MockContextMockRecorder) Config() *gomock.Call {
+// FirstSeries indicates an expected call of FirstSeries
+func (mr *MockContextMockRecorder) FirstSeries() *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Config", reflect.TypeOf((*MockContext)(nil).Config))
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "FirstSeries", reflect.TypeOf((*MockContext)(nil).FirstSeries))
+}
+
+// Labels mocks base method
+func (m *MockContext) Labels() string {
+	m.ctrl.T.Helper()
+	ret := m.ctrl.Call(m, "Labels")
+	ret0, _ := ret[0].(string)
+	return ret0
+}
+
+// Labels indicates an expected call of Labels
+func (mr *MockContextMockRecorder) Labels() *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Labels", reflect.TypeOf((*MockContext)(nil).Labels))
+}
+
+// LegendPosition mocks base method
+func (m *MockContext) LegendPosition() core.Position {
+	m.ctrl.T.Helper()
+	ret := m.ctrl.Call(m, "LegendPosition")
+	ret0, _ := ret[0].(core.Position)
+	return ret0
+}
+
+// LegendPosition indicates an expected call of LegendPosition
+func (mr *MockContextMockRecorder) LegendPosition() *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "LegendPosition", reflect.TypeOf((*MockContext)(nil).LegendPosition))
+}
+
+// LegendTitle mocks base method
+func (m *MockContext) LegendTitle() string {
+	m.ctrl.T.Helper()
+	ret := m.ctrl.Call(m, "LegendTitle")
+	ret0, _ := ret[0].(string)
+	return ret0
+}
+
+// LegendTitle indicates an expected call of LegendTitle
+func (mr *MockContextMockRecorder) LegendTitle() *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "LegendTitle", reflect.TypeOf((*MockContext)(nil).LegendTitle))
 }
 
 // Series mocks base method
-func (m *MockContext) Series() core.Series {
+func (m *MockContext) Series(arg0 int) core.Series {
 	m.ctrl.T.Helper()
-	ret := m.ctrl.Call(m, "Series")
+	ret := m.ctrl.Call(m, "Series", arg0)
 	ret0, _ := ret[0].(core.Series)
 	return ret0
 }
 
 // Series indicates an expected call of Series
-func (mr *MockContextMockRecorder) Series() *gomock.Call {
+func (mr *MockContextMockRecorder) Series(arg0 interface{}) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Series", reflect.TypeOf((*MockContext)(nil).Series))
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Series", reflect.TypeOf((*MockContext)(nil).Series), arg0)
+}
+
+// SeriesColors mocks base method
+func (m *MockContext) SeriesColors(arg0 int) []core.Hex {
+	m.ctrl.T.Helper()
+	ret := m.ctrl.Call(m, "SeriesColors", arg0)
+	ret0, _ := ret[0].([]core.Hex)
+	return ret0
+}
+
+// SeriesColors indicates an expected call of SeriesColors
+func (mr *MockContextMockRecorder) SeriesColors(arg0 interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "SeriesColors", reflect.TypeOf((*MockContext)(nil).SeriesColors), arg0)
+}
+
+// SeriesCount mocks base method
+func (m *MockContext) SeriesCount() int {
+	m.ctrl.T.Helper()
+	ret := m.ctrl.Call(m, "SeriesCount")
+	ret0, _ := ret[0].(int)
+	return ret0
+}
+
+// SeriesCount indicates an expected call of SeriesCount
+func (mr *MockContextMockRecorder) SeriesCount() *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "SeriesCount", reflect.TypeOf((*MockContext)(nil).SeriesCount))
+}
+
+// Title mocks base method
+func (m *MockContext) Title() string {
+	m.ctrl.T.Helper()
+	ret := m.ctrl.Call(m, "Title")
+	ret0, _ := ret[0].(string)
+	return ret0
+}
+
+// Title indicates an expected call of Title
+func (mr *MockContextMockRecorder) Title() *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Title", reflect.TypeOf((*MockContext)(nil).Title))
+}
+
+// TitleFontSize mocks base method
+func (m *MockContext) TitleFontSize() int {
+	m.ctrl.T.Helper()
+	ret := m.ctrl.Call(m, "TitleFontSize")
+	ret0, _ := ret[0].(int)
+	return ret0
+}
+
+// TitleFontSize indicates an expected call of TitleFontSize
+func (mr *MockContextMockRecorder) TitleFontSize() *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "TitleFontSize", reflect.TypeOf((*MockContext)(nil).TitleFontSize))
+}
+
+// XAxisTitle mocks base method
+func (m *MockContext) XAxisTitle() string {
+	m.ctrl.T.Helper()
+	ret := m.ctrl.Call(m, "XAxisTitle")
+	ret0, _ := ret[0].(string)
+	return ret0
+}
+
+// XAxisTitle indicates an expected call of XAxisTitle
+func (mr *MockContextMockRecorder) XAxisTitle() *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "XAxisTitle", reflect.TypeOf((*MockContext)(nil).XAxisTitle))
+}
+
+// YAxisTitle mocks base method
+func (m *MockContext) YAxisTitle() string {
+	m.ctrl.T.Helper()
+	ret := m.ctrl.Call(m, "YAxisTitle")
+	ret0, _ := ret[0].(string)
+	return ret0
+}
+
+// YAxisTitle indicates an expected call of YAxisTitle
+func (mr *MockContextMockRecorder) YAxisTitle() *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "YAxisTitle", reflect.TypeOf((*MockContext)(nil).YAxisTitle))
 }

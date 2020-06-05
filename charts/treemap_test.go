@@ -7,6 +7,7 @@ import (
 	"testing"
 
 	svg "github.com/ajstarks/svgo"
+	"github.com/blueworrybear/svg-charts/core"
 	"github.com/blueworrybear/svg-charts/mock"
 	"github.com/golang/mock/gomock"
 )
@@ -16,31 +17,30 @@ func TestTreeMap(t *testing.T) {
 	defer ctrl.Finish()
 
 	intNums := []int{100, 20, 30, 40, 50, 60, 40, 70, 80}
+	colors := []core.Hex{"#C7243A", "#7A7616", "#7A0A19", "#165B7A", "#068AC7"}
 	floatNums := make([]float64, len(intNums))
+	seriesColors := make([]core.Hex, len(intNums))
 	for i, v := range intNums {
 		floatNums[i] = float64(v)
-	}
-	series := make([]interface{}, len(floatNums))
-	for i, s := range floatNums {
-		series[i] = s
+		seriesColors[i] = colors[i%len(colors)]
 	}
 
 	mockSeries := mock.NewMockSeries(ctrl)
-	mockSeries.EXPECT().Data().Return(series)
+	mockSeries.EXPECT().Float64Data().Return(floatNums, nil)
 
 	mockContext := mock.NewMockContext(ctrl)
-	mockContext.EXPECT().Series().Return(mockSeries)
-
+	mockContext.EXPECT().FirstSeries().Return(mockSeries)
+	mockContext.EXPECT().SeriesColors(gomock.Eq(0)).Return(seriesColors)
 	c := NewTreeMapChart(mockContext)
 
-	file, err := os.OpenFile("tree.svg", os.O_CREATE|os.O_WRONLY, os.ModePerm)
+	file, err := os.Create("tree.svg")
 	defer file.Close()
 	if err != nil {
 		t.Error(err)
 		return
 	}
 	buffer := bytes.NewBuffer([]byte{})
-	if err := c.Rander(buffer); err != nil {
+	if err := c.Render(buffer); err != nil {
 		t.Error(err)
 		return
 	}

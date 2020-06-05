@@ -4,9 +4,11 @@ package core
 type Options struct {
 	// Series of data
 	Series []*SeriesOption
+	Labels []string
 	// Series color
 	Colors []string
 	Chart  *ChartOptions
+	Title  *TitleOptions
 	Legend *LegendOptions
 	XAxis  *AxisOptions
 	YAxis  *AxisOptions
@@ -18,6 +20,13 @@ type ChartOptions struct {
 	Height     int
 	Width      int
 	BackGround string
+}
+
+type TitleOptions struct {
+	Text      string
+	Alignment Alignment
+	FontSize  int
+	Hide      bool
 }
 
 // LegendOptions for series
