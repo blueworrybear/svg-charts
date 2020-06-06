@@ -8,7 +8,9 @@ type Context interface {
 	TitleFontSize() int
 	ChartSize() (int, int)
 	ChartOffset() (int, int)
-	Labels() string
+	Labels() []string
+	LabelFontSize() int
+	LabelColor() Hex
 	SeriesCount() int
 	Series(index int) Series
 	FirstSeries() Series

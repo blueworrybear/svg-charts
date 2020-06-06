@@ -24,6 +24,7 @@ func TestTreeMap(t *testing.T) {
 		floatNums[i] = float64(v)
 		seriesColors[i] = colors[i%len(colors)]
 	}
+	labels := []string{"a", "b", "c", "d", "e", "f", "g", "h", "i"}
 
 	mockSeries := mock.NewMockSeries(ctrl)
 	mockSeries.EXPECT().Float64Data().Return(floatNums, nil)
@@ -31,6 +32,9 @@ func TestTreeMap(t *testing.T) {
 	mockContext := mock.NewMockContext(ctrl)
 	mockContext.EXPECT().FirstSeries().Return(mockSeries)
 	mockContext.EXPECT().SeriesColors(gomock.Eq(0)).Return(seriesColors)
+	mockContext.EXPECT().Labels().Return(labels)
+	mockContext.EXPECT().LabelColor().AnyTimes().Return(core.Hex("#FF0000"))
+	mockContext.EXPECT().LabelFontSize().AnyTimes().Return(15)
 	c := NewTreeMapChart(mockContext)
 
 	file, err := os.Create("tree.svg")

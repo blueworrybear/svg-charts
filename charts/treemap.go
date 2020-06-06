@@ -6,7 +6,7 @@ import (
 
 	svg "github.com/ajstarks/svgo"
 	"github.com/blueworrybear/svg-charts/core"
-	shape "github.com/blueworrybear/svg-charts/modules/common"
+	"github.com/blueworrybear/svg-charts/modules/common"
 )
 
 type TreeMapChart struct {
@@ -28,19 +28,26 @@ func (c *TreeMapChart) Render(w io.Writer) error {
 	canvas := svg.New(w)
 	s := c.contex.FirstSeries()
 	data, err := s.Float64Data()
-	colors := c.contex.SeriesColors(0)
 	if err != nil {
 		return err
 	}
+	colors := c.contex.SeriesColors(0)
+	labels := c.contex.Labels()
 	root := tilingSlice(data)
 	for i, box := range tilingBoxes(root, 0, 0, 600, 400, 0) {
 		boxID := fmt.Sprintf("box%d", box.id)
-		rect := shape.NewRectangle(box.w, box.h)
+		rect := common.NewRectangle(box.w, box.h)
 		rect.SetPosition(box.x, box.y)
 		rect.SetPadding(1)
-		rect.SetColor(colors[i])
+		rect.SetColor(colors[i%len(colors)])
 		rect.SetID(boxID)
 		rect.Draw(canvas)
+		if i < len(labels) {
+			label := common.NewTextLabel(box.x+5, box.y+5, labels[i])
+			label.SetColor(c.contex.LabelColor())
+			label.SetFontSize(c.contex.LabelFontSize())
+			label.Draw(canvas)
+		}
 	}
 	return nil
 }

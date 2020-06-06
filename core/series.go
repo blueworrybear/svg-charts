@@ -8,13 +8,7 @@ type Series interface {
 	Name() string
 	Data() []interface{}
 	Float64Data() ([]float64, error)
-	Colors() []RGB
-}
-
-type SeriesOption struct {
-	Name   string
-	Data   []interface{}
-	Colors []string
+	Colors() []Hex
 }
 
 func (g SeriesGroup) Size() int {

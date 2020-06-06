@@ -92,11 +92,39 @@ func (mr *MockContextMockRecorder) FirstSeries() *gomock.Call {
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "FirstSeries", reflect.TypeOf((*MockContext)(nil).FirstSeries))
 }
 
+// LabelColor mocks base method
+func (m *MockContext) LabelColor() core.Hex {
+	m.ctrl.T.Helper()
+	ret := m.ctrl.Call(m, "LabelColor")
+	ret0, _ := ret[0].(core.Hex)
+	return ret0
+}
+
+// LabelColor indicates an expected call of LabelColor
+func (mr *MockContextMockRecorder) LabelColor() *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "LabelColor", reflect.TypeOf((*MockContext)(nil).LabelColor))
+}
+
+// LabelFontSize mocks base method
+func (m *MockContext) LabelFontSize() int {
+	m.ctrl.T.Helper()
+	ret := m.ctrl.Call(m, "LabelFontSize")
+	ret0, _ := ret[0].(int)
+	return ret0
+}
+
+// LabelFontSize indicates an expected call of LabelFontSize
+func (mr *MockContextMockRecorder) LabelFontSize() *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "LabelFontSize", reflect.TypeOf((*MockContext)(nil).LabelFontSize))
+}
+
 // Labels mocks base method
-func (m *MockContext) Labels() string {
+func (m *MockContext) Labels() []string {
 	m.ctrl.T.Helper()
 	ret := m.ctrl.Call(m, "Labels")
-	ret0, _ := ret[0].(string)
+	ret0, _ := ret[0].([]string)
 	return ret0
 }
 

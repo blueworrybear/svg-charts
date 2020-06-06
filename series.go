@@ -1,4 +1,4 @@
-package series
+package svgchart
 
 import (
 	"errors"
@@ -9,18 +9,26 @@ import (
 
 var errSeriesFormat = errors.New("")
 
+func SeriesData(data ...interface{}) []interface{} {
+	return data
+}
+
 type baseSeries struct {
 	core.Series
 	name   string
 	data   []interface{}
-	colors []string
+	colors []core.Hex
 }
 
-func NewSeries(option *core.SeriesOption) (core.Series, error) {
+func newSeries(option *SeriesOption) (core.Series, error) {
+	colors := make([]core.Hex, len(option.Colors))
+	for i, v := range option.Colors {
+		colors[i] = core.Hex(v)
+	}
 	return &baseSeries{
 		name:   option.Name,
 		data:   option.Data,
-		colors: option.Colors,
+		colors: colors,
 	}, nil
 }
 
@@ -33,20 +41,20 @@ func (s *baseSeries) Data() []interface{} {
 }
 
 func (s *baseSeries) Float64Data() ([]float64, error) {
-	var ok bool
 	values := make([]float64, len(s.data))
 	for i, v := range s.data {
-		if values[i], ok = v.(float64); !ok {
+		switch n := v.(type) {
+		case float64:
+			values[i] = n
+		case int:
+			values[i] = float64(n)
+		default:
 			return values, fmt.Errorf("Value format error")
 		}
 	}
 	return values, nil
 }
 
-func (s *baseSeries) Colors() []core.RGB {
-	colors := make([]core.RGB, len(s.colors))
-	for i, hex := range s.colors {
-		colors[i], _ = core.Hex2RGB(core.Hex(hex))
-	}
-	return colors
+func (s *baseSeries) Colors() []core.Hex {
+	return s.colors
 }
