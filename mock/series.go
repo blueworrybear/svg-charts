@@ -34,10 +34,10 @@ func (m *MockSeries) EXPECT() *MockSeriesMockRecorder {
 }
 
 // Colors mocks base method
-func (m *MockSeries) Colors() []core.RGB {
+func (m *MockSeries) Colors() []core.Hex {
 	m.ctrl.T.Helper()
 	ret := m.ctrl.Call(m, "Colors")
-	ret0, _ := ret[0].([]core.RGB)
+	ret0, _ := ret[0].([]core.Hex)
 	return ret0
 }
 

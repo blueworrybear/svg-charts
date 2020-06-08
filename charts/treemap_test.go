@@ -33,7 +33,7 @@ func TestTreeMap(t *testing.T) {
 	mockContext.EXPECT().FirstSeries().Return(mockSeries)
 	mockContext.EXPECT().SeriesColors(gomock.Eq(0)).Return(seriesColors)
 	mockContext.EXPECT().Labels().Return(labels)
-	mockContext.EXPECT().LabelColor().AnyTimes().Return(core.Hex("#FF0000"))
+	mockContext.EXPECT().LabelFontColor().AnyTimes().Return(core.Hex("#FF0000"))
 	mockContext.EXPECT().LabelFontSize().AnyTimes().Return(15)
 	c := NewTreeMapChart(mockContext)
 

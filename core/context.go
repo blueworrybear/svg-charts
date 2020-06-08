@@ -10,7 +10,7 @@ type Context interface {
 	ChartOffset() (int, int)
 	Labels() []string
 	LabelFontSize() int
-	LabelColor() Hex
+	LabelFontColor() Hex
 	SeriesCount() int
 	Series(index int) Series
 	FirstSeries() Series

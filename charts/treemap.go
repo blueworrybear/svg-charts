@@ -44,7 +44,7 @@ func (c *TreeMapChart) Render(w io.Writer) error {
 		rect.Draw(canvas)
 		if i < len(labels) {
 			label := common.NewTextLabel(box.x+5, box.y+5, labels[i])
-			label.SetColor(c.contex.LabelColor())
+			label.SetColor(c.contex.LabelFontColor())
 			label.SetFontSize(c.contex.LabelFontSize())
 			label.Draw(canvas)
 		}
