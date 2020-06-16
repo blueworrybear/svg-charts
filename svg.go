@@ -42,8 +42,7 @@ func (svg *SVGChart) renderChart(w io.Writer) error {
 	return nil
 }
 
-func (svg *SVGChart) Render(w io.WriteCloser) error {
-	defer w.Close()
+func (svg *SVGChart) Render(w io.Writer) error {
 	canvas := svgo.New(w)
 	canvas.Start(svg.context.CanvasSize())
 	if err := svg.renderChart(w); err != nil {
